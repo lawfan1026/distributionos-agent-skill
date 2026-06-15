@@ -1,0 +1,13 @@
+interface:
+  display_name: "DistributionOS"
+  short_description: "Connect app repos to DistributionOS"
+  default_prompt: "Use $distributionos to connect this app repo to DistributionOS and install analytics safely."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "distributionos"
+      description: "DistributionOS MCP server"
+      transport: "streamable_http"
+      url: "https://distributionos.dev/api/mcp"
+policy:
+  allow_implicit_invocation: true
