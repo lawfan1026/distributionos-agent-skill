@@ -1,51 +1,68 @@
 # DistributionOS CLI Reference
 
-Use the CLI from inside the customer's app repository.
+Use the CLI from inside the customer's app repository. Use `@latest` in displayed setup commands so an older local install does not hide a reviewed setup update.
 
-## Commands
+## Setup
 
-Dry-run setup:
+Review setup for Codex. This can open interactive MCP OAuth before the repository plan:
 
 ```bash
-npx @distributionos/cli setup --app <appId>
+npx --yes @distributionos/cli@latest setup --app <appId> --agent codex
 ```
 
-Apply reviewed setup:
+Apply only the reviewed setup:
 
 ```bash
-npx @distributionos/cli setup --app <appId> --apply
+npx --yes @distributionos/cli@latest setup --app <appId> --agent codex --apply
+```
+
+Direct terminal review without client-specific MCP setup:
+
+```bash
+npx --yes @distributionos/cli@latest setup --app <appId> --agent terminal
 ```
 
 Login only:
 
 ```bash
-npx @distributionos/cli login --app <appId>
+npx --yes @distributionos/cli@latest login --app <appId>
 ```
 
-Verify analytics:
+## Verify and Close Work
+
+Verify public analytics after deployment:
 
 ```bash
-npx @distributionos/cli verify --app <appId> --url <liveUrl>
+npx --yes @distributionos/cli@latest verify --app <appId> --url <liveUrl>
 ```
 
-Report shipped work:
+Start and complete one meaningful work session when MCP tools are unavailable:
 
 ```bash
-npx @distributionos/cli report-implementation --app <appId> --artifact <artifactId> --url <liveUrl>
+npx --yes @distributionos/cli@latest start-work --app <appId> --task-type <type> --summary <text>
+npx --yes @distributionos/cli@latest complete-work --app <appId> --work-session <id> --status <status> --summary <text> --url <liveUrl> --file <path> --pr-url <url>
 ```
 
-## Behavior
+Legacy artifact-only reporting:
 
-`setup` detects the repo framework, package manager, public/private routes, layout files, content files, agent instruction files, deploy hints, and build/lint/test commands.
+```bash
+npx --yes @distributionos/cli@latest report-implementation --app <appId> --artifact <artifactId> --url <liveUrl> --summary <text>
+```
 
-The default setup flow fetches current DistributionOS instructions and analytics contract data through OAuth/MCP, then prints a plan before changing files.
+Prefer MCP `complete_agent_work`, then CLI `complete-work`. Use `report-implementation` only when neither work-session path is available.
 
-`--no-fetch --json` is for smoke tests, CI checks, or debugging. It does not log in, fetch app instructions, create analytics trackers, or submit onboarding.
+## Behavior and Boundaries
 
-## Dirty Worktrees
+`setup` detects the repository framework, package manager, routes, layouts, content files, agent instruction files, deployment hints, and build, lint, or test commands. It fetches current app instructions and analytics contracts after authentication, then prints a plan before file mutation.
 
-Do not run `--apply --allow-dirty` casually. If the repo has unrelated changes, explain the dirty state and ask the user whether the CLI should apply only the DistributionOS-managed changes.
+`setup --agent codex` checks or adds the DistributionOS MCP server, runs MCP login, and verifies the active Codex runtime before it prints the repository plan. This is an interactive user path.
 
-## Deployment
+For a local or CI smoke test that must not authenticate, change files, create a tracker, or report setup state, use all of these flags:
 
-The CLI does not commit, push, or deploy. Deploy only after the user reviews the diff and explicitly asks for deployment.
+```bash
+npx --yes @distributionos/cli@latest setup --app <testAppId> --cwd <disposableRepo> --no-fetch --json --skip-agent-setup --skip-setup-report
+```
+
+Never use that smoke-test form as proof that a real app is connected or analytics is installed.
+
+The CLI does not commit, push, or deploy. It refuses dirty worktrees before writes unless `--allow-dirty` is explicit.

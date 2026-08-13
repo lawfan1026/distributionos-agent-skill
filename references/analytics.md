@@ -37,7 +37,7 @@ Do not add DistributionOS IDs to canonical URLs or normal internal links.
 After deployment, verify representative public URLs with:
 
 ```bash
-npx @distributionos/cli verify --app <appId> --url <liveUrl>
+npx --yes @distributionos/cli@latest verify --app <appId> --url <liveUrl>
 ```
 
 If analytics is intentionally skipped for a public asset, report an `analyticsOptOutReason` through DistributionOS instead of silently omitting tracking.
