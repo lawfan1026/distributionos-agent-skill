@@ -1,12 +1,12 @@
 interface:
   display_name: "DistributionOS"
-  short_description: "Connect app repos to DistributionOS"
-  default_prompt: "Use $distributionos to connect this app repo to DistributionOS and install analytics safely."
+  short_description: "Use app-scoped marketing context and receipts"
+  default_prompt: "Use $distributionos to connect this app repo, fetch current marketing context, and complete the work with verified receipts."
 dependencies:
   tools:
     - type: "mcp"
       value: "distributionos"
-      description: "DistributionOS MCP server"
+      description: "DistributionOS app context and marketing work server"
       transport: "streamable_http"
       url: "https://distributionos.dev/api/mcp"
 policy:
