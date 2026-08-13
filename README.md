@@ -70,3 +70,7 @@ Compatibility snapshot dated `2026.08.12`: DistributionOS CLI `0.1.20`, setup co
 ## Safety Boundary
 
 This repository does not grant permission to edit a customer repository, publish content, schedule posts, deploy changes, create reviews, or use private data. The user and current app-scoped DistributionOS instructions control those actions.
+
+## License
+
+The files in this public agent-skill repository are available under the [MIT License](LICENSE). This license does not apply to the private DistributionOS application repository, hosted service, customer data, or DistributionOS trademarks.
