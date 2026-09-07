@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "distributionos-directory": {
+      "type": "http",
+      "url": "https://distributionos.dev/api/mcp/directory"
+    }
+  }
+}

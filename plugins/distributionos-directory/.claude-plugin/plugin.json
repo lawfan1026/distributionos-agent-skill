@@ -1,0 +1,13 @@
+{
+  "name": "distributionos-directory",
+  "version": "0.1.0",
+  "description": "Read DistributionOS marketing context and save plans for review.",
+  "author": {
+    "name": "1436978 B.C. LTD."
+  },
+  "homepage": "https://github.com/lawfan1026/distributionos-agent-skill/tree/main/plugins/distributionos-directory",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "license": "MIT",
+  "repository": "https://github.com/lawfan1026/distributionos-agent-skill"
+}
