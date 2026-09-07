@@ -1,0 +1,32 @@
+{
+  "name": "distributionos-directory",
+  "version": "0.1.0",
+  "description": "Read DistributionOS marketing context and save plans for review.",
+  "author": {
+    "name": "1436978 B.C. LTD."
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DistributionOS",
+    "shortDescription": "Read marketing context and propose next steps.",
+    "longDescription": "Read app context, next actions and saved outputs; save a marketing plan for review. No publishing or background execution.",
+    "developerName": "1436978 B.C. LTD.",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://distributionos.dev",
+    "privacyPolicyURL": "https://distributionos.dev/legal/privacy",
+    "termsOfServiceURL": "https://distributionos.dev/legal/terms",
+    "defaultPrompt": [
+      "What should I work on next?",
+      "Read my saved marketing outputs.",
+      "Save a marketing plan for my review."
+    ]
+  },
+  "mcpServers": "./.mcp.json",
+  "license": "MIT",
+  "repository": "https://github.com/lawfan1026/distributionos-agent-skill",
+  "homepage": "https://github.com/lawfan1026/distributionos-agent-skill/tree/main/plugins/distributionos-directory"
+}
